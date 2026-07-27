@@ -1,0 +1,143 @@
+#include <windows.h>
+#include "resource.h"
+
+1 24 "app.manifest"
+IDI_APPICON ICON "app.ico"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x0L
+ FILEOS 0x40004L
+ FILETYPE VFT_APP
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName",     "editor++ project"
+            VALUE "FileDescription", "editor++ - portable text editor"
+            VALUE "FileVersion",     "1.0.0.0"
+            VALUE "InternalName",    "editor++"
+            VALUE "LegalCopyright",  "Public domain"
+            VALUE "OriginalFilename","editor++.exe"
+            VALUE "ProductName",     "editor++"
+            VALUE "ProductVersion",  "1.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+IDR_MAINMENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",           ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",       ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",          ID_FILE_SAVE
+        MENUITEM "Save &As...\tCtrl+Shift+S", ID_FILE_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Close\tCtrl+W",         ID_FILE_CLOSE
+        MENUITEM "Close A&ll",             ID_FILE_CLOSEALL
+        MENUITEM SEPARATOR
+        POPUP "Recent &Files"
+        BEGIN
+            MENUITEM "(empty)",            ID_RECENT_EMPTY, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4",          ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",          ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",          ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",           ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",          ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",         ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",    ID_EDIT_SELECTALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Find / Replace...\tCtrl+F", ID_EDIT_FIND
+        MENUITEM "Find &Next\tF3",         ID_EDIT_FINDNEXT
+        MENUITEM "Find &Previous\tShift+F3", ID_EDIT_FINDPREV
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Word Wrap",             ID_VIEW_WORDWRAP
+        MENUITEM "Show White&space / EOL (¶)", ID_VIEW_WHITESPACE
+        MENUITEM "&Line Numbers",          ID_VIEW_LINENUMBERS
+        MENUITEM "&Indent Guides",         ID_VIEW_INDENTGUIDES
+        MENUITEM "&Highlight Current Line", ID_VIEW_CURRENTLINE
+        MENUITEM SEPARATOR
+        MENUITEM "&Reset Zoom\tCtrl+0",    ID_VIEW_ZOOMRESET
+        MENUITEM SEPARATOR
+        MENUITEM "&Dark Theme",            ID_VIEW_DARKTHEME
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "Pretty Print &JSON",     ID_TOOLS_JSON_PRETTY
+        MENUITEM "&Minify JSON",           ID_TOOLS_JSON_MINIFY
+        MENUITEM "Pretty Print &XML",      ID_TOOLS_XML_PRETTY
+        MENUITEM SEPARATOR
+        MENUITEM "&Base64 Encode",         ID_TOOLS_BASE64_ENCODE
+        MENUITEM "Base64 &Decode",         ID_TOOLS_BASE64_DECODE
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&Next Tab\tCtrl+Tab",         ID_WINDOW_NEXTTAB
+        MENUITEM "&Previous Tab\tCtrl+Shift+Tab", ID_WINDOW_PREVTAB
+    END
+END
+
+IDR_ACCELERATORS ACCELERATORS
+BEGIN
+    "N",    ID_FILE_NEW,        VIRTKEY, CONTROL
+    "O",    ID_FILE_OPEN,       VIRTKEY, CONTROL
+    "S",    ID_FILE_SAVE,       VIRTKEY, CONTROL
+    "S",    ID_FILE_SAVEAS,     VIRTKEY, CONTROL, SHIFT
+    "W",    ID_FILE_CLOSE,      VIRTKEY, CONTROL
+    "Z",    ID_EDIT_UNDO,       VIRTKEY, CONTROL
+    "Y",    ID_EDIT_REDO,       VIRTKEY, CONTROL
+    "F",    ID_EDIT_FIND,       VIRTKEY, CONTROL
+    VK_F3,  ID_EDIT_FINDNEXT,   VIRTKEY
+    VK_F3,  ID_EDIT_FINDPREV,   VIRTKEY, SHIFT
+    "0",    ID_VIEW_ZOOMRESET,  VIRTKEY, CONTROL
+    VK_TAB, ID_WINDOW_NEXTTAB,  VIRTKEY, CONTROL
+    VK_TAB, ID_WINDOW_PREVTAB,  VIRTKEY, CONTROL, SHIFT
+END
+
+IDD_FIND DIALOGEX 0, 0, 260, 112
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Find / Replace"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Find what:",       -1, 7, 9, 50, 8
+    COMBOBOX        IDC_FIND_TEXT,      60, 7, 133, 80, CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Replace with:",    -1, 7, 24, 50, 8
+    COMBOBOX        IDC_REPLACE_TEXT,   60, 24, 133, 80, CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+
+    CONTROL         "Match case",       IDC_MATCHCASE, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 7, 42, 90, 10
+    CONTROL         "Whole word",       IDC_WHOLEWORD, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 7, 54, 90, 10
+    CONTROL         "Regular expression", IDC_REGEX,   "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 7, 66, 90, 10
+    CONTROL         "Wrap around",      IDC_WRAPAROUND, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 7, 78, 90, 10
+
+    LTEXT           "Scope:",           -1, 105, 42, 90, 8
+    CONTROL         "Current document", IDC_SCOPE_DOC, "Button", BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP, 105, 54, 90, 10
+    CONTROL         "Selection",        IDC_SCOPE_SEL, "Button", BS_AUTORADIOBUTTON | WS_TABSTOP, 105, 66, 90, 10
+    CONTROL         "All open tabs",    IDC_SCOPE_ALLTABS, "Button", BS_AUTORADIOBUTTON | WS_TABSTOP, 105, 78, 90, 10
+
+    PUSHBUTTON      "Find &Next",       IDC_BTN_FINDNEXT,   200, 7, 53, 14
+    PUSHBUTTON      "Find &Previous",   IDC_BTN_FINDPREV,   200, 24, 53, 14
+    PUSHBUTTON      "Cou&nt",           IDC_BTN_COUNT,      200, 41, 53, 14
+    PUSHBUTTON      "&Replace",         IDC_BTN_REPLACE,    200, 58, 53, 14
+    PUSHBUTTON      "Replace &All",     IDC_BTN_REPLACEALL, 200, 75, 53, 14
+
+    LTEXT           "",                 IDC_FIND_STATUS, 7, 96, 190, 10
+    DEFPUSHBUTTON   "Close",            IDCANCEL, 200, 93, 53, 14
+END
