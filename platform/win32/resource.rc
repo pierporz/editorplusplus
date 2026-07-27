@@ -84,6 +84,7 @@ BEGIN
         MENUITEM "Pretty Print &JSON",     ID_TOOLS_JSON_PRETTY
         MENUITEM "&Minify JSON",           ID_TOOLS_JSON_MINIFY
         MENUITEM "Pretty Print &XML",      ID_TOOLS_XML_PRETTY
+        MENUITEM "Pretty Print &SQL",      ID_TOOLS_SQL_PRETTY
         MENUITEM SEPARATOR
         MENUITEM "&Base64 Encode",         ID_TOOLS_BASE64_ENCODE
         MENUITEM "Base64 &Decode",         ID_TOOLS_BASE64_DECODE

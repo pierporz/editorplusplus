@@ -13,6 +13,7 @@ namespace ep::win32::tools {
 std::string JsonPretty(Editor& editor);
 std::string JsonMinify(Editor& editor);
 std::string XmlPretty(Editor& editor);
+std::string SqlPretty(Editor& editor);
 std::string Base64Encode(Editor& editor);
 std::string Base64Decode(Editor& editor);
 

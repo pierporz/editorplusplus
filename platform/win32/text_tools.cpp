@@ -3,6 +3,7 @@
 #include "core/base64.h"
 #include "core/encoding.h"
 #include "core/json_pretty.h"
+#include "core/sql_pretty.h"
 #include "core/xml_pretty.h"
 #include "third_party/scintilla/include/Scintilla.h"
 
@@ -79,6 +80,13 @@ std::string JsonMinify(Editor& editor) {
 std::string XmlPretty(Editor& editor) {
   bool has_sel = HasSelection(editor);
   std::string output = ep::XmlPrettyPrint(ActiveInput(editor, has_sel));
+  ReplaceActiveText(editor, has_sel, output);
+  return "";
+}
+
+std::string SqlPretty(Editor& editor) {
+  bool has_sel = HasSelection(editor);
+  std::string output = ep::SqlPretty(ActiveInput(editor, has_sel));
   ReplaceActiveText(editor, has_sel, output);
   return "";
 }

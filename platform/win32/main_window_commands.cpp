@@ -110,6 +110,9 @@ void MainWindow::OnCommand(int id) {
     case ID_TOOLS_XML_PRETTY:
       RunTool(tools::XmlPretty, "xml");
       break;
+    case ID_TOOLS_SQL_PRETTY:
+      RunTool(tools::SqlPretty, "sql");
+      break;
     case ID_TOOLS_BASE64_ENCODE:
       RunTool(tools::Base64Encode);
       break;

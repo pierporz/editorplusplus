@@ -21,11 +21,13 @@ const wchar_t kFileFilter[] =
     L"Text Files (*.txt)\0*.txt\0"
     L"JSON Files (*.json)\0*.json\0"
     L"XML Files (*.xml)\0*.xml\0"
+    L"SQL Files (*.sql)\0*.sql\0"
     L"All Files (*.*)\0*.*\0";
 constexpr DWORD kFilterIndexText = 1;
 constexpr DWORD kFilterIndexJson = 2;
 constexpr DWORD kFilterIndexXml = 3;
-constexpr DWORD kFilterIndexAll = 4;
+constexpr DWORD kFilterIndexSql = 4;
+constexpr DWORD kFilterIndexAll = 5;
 }  // namespace
 
 void MainWindow::CmdOpen() {
@@ -127,6 +129,9 @@ void MainWindow::CmdSaveAs() {
   } else if (doc.language == "xml") {
     filter_index = kFilterIndexXml;
     def_ext = L"xml";
+  } else if (doc.language == "sql") {
+    filter_index = kFilterIndexSql;
+    def_ext = L"sql";
   }
 
   OPENFILENAMEW ofn{};

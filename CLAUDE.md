@@ -59,6 +59,7 @@ editor++/
 │   ├── base64.{h,cpp}
 │   ├── json_pretty.{h,cpp}    # parser+formatter JSON scritto a mano
 │   ├── xml_pretty.{h,cpp}     # formatter XML scritto a mano
+│   ├── sql_pretty.{h,cpp}     # formatter SQL scritto a mano
 │   ├── encoding.{h,cpp}       # BOM detect, UTF-8 validate, EOL detect/convert
 │   ├── text_stats.{h,cpp}     # conteggi caratteri/righe/selezione
 │   ├── session.{h,cpp}        # serializzazione stato tab -> stringa
@@ -83,6 +84,7 @@ editor++/
 │   ├── test_base64.cpp
 │   ├── test_json_pretty.cpp
 │   ├── test_xml_pretty.cpp
+│   ├── test_sql_pretty.cpp
 │   ├── test_encoding.cpp
 │   └── test_session.cpp
 └── build/                     # gitignored
@@ -159,6 +161,13 @@ Dialog **non modale**, con:
 - **Pretty print XML** — indentazione strutturale. Deve gestire: dichiarazione XML, commenti,
   CDATA, tag self-closing, attributi con virgolette miste, namespace. Non validante.
   Preserva il contenuto di CDATA e `<pre>`-like verbatim.
+- **Pretty print SQL** — formattatore strutturale non validante in `core/sql_pretty.cpp`
+  (tokenizer iterativo, no ricorsione). Va a capo sulle clausole principali (SELECT, FROM,
+  WHERE, JOIN e varianti, GROUP BY, ORDER BY, HAVING, UNION [ALL], INSERT INTO, VALUES,
+  UPDATE, SET, DELETE FROM, WITH), indenta le subquery tra parentesi, spezza la lista
+  colonne di SELECT una per riga, va a capo su AND/OR. Solo le parole chiave riconosciute
+  vengono maiuscolizzate; identificatori/nomi funzione restano come scritti. Commenti
+  (`--`, `/* */`) e stringhe preservati verbatim.
 - **Base64 encode** / **Base64 decode** — su selezione se presente, altrimenti tutto il
   documento. Encode opera sui byte UTF-8. Decode: se il risultato non è UTF-8 valido,
   avvisa nella status bar e non sostituire.
