@@ -298,6 +298,12 @@ precludertelo mai.
 7. Non refactorare codice che non c'entra col task corrente.
 8. Se scopri che un requisito di questo file è irrealizzabile o sbagliato, **dillo**
    invece di aggirarlo in silenzio.
+9. **Ogni volta che fai una modifica (o una serie di modifiche correlate) a questo
+   repository, fai commit e push su GitHub**: `git push origin master` verso
+   `git@github.com:pierporz/editorplusplus.git` (remote già configurato come `origin`).
+   Questo vale per ogni sessione di lavoro, non solo per la prima: non lasciare mai
+   lavoro committato solo in locale senza pusharlo, a meno che l'utente non chieda
+   esplicitamente di non farlo per quella sessione.
 
 ---
 
@@ -311,3 +317,4 @@ Una feature è completa quando:
 - [ ] Nessun file supera 500 righe
 - [ ] Il binario è ancora < 4 MB
 - [ ] L'utente l'ha provata su Windows e ha confermato
+- [ ] Commit fatto e pushato su `origin master` (https://github.com/pierporz/editorplusplus)
