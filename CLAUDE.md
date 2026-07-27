@@ -87,7 +87,7 @@ editor++/
 │   ├── test_sql_pretty.cpp
 │   ├── test_encoding.cpp
 │   └── test_session.cpp
-└── build/                     # gitignored
+└── build/                     # gitignored TRANNE build/editor++.exe (vedi sezione 9)
 ```
 
 ---
@@ -313,6 +313,11 @@ precludertelo mai.
    Questo vale per ogni sessione di lavoro, non solo per la prima: non lasciare mai
    lavoro committato solo in locale senza pusharlo, a meno che l'utente non chieda
    esplicitamente di non farlo per quella sessione.
+10. **Il binario compilato va pushato insieme al codice**: dopo `make win` (rifatto
+    pulito, verificato senza warning), `strip` l'eseguibile e committa
+    `build/editor++.exe` — è l'unico file sotto `build/` non ignorato da `.gitignore`
+    (vedi `.gitignore`: `build/*` + `!build/editor++.exe`). Ogni push su GitHub deve
+    quindi includere anche la build aggiornata, non solo le sorgenti.
 
 ---
 
@@ -326,4 +331,5 @@ Una feature è completa quando:
 - [ ] Nessun file supera 500 righe
 - [ ] Il binario è ancora < 4 MB
 - [ ] L'utente l'ha provata su Windows e ha confermato
-- [ ] Commit fatto e pushato su `origin master` (https://github.com/pierporz/editorplusplus)
+- [ ] Commit fatto e pushato su `origin master` (https://github.com/pierporz/editorplusplus),
+      incluso `build/editor++.exe` aggiornato e strippato
