@@ -9,7 +9,8 @@ namespace ep::win32 {
 namespace {
 // Fixed pixel widths for the trailing panes; the message pane (index 0)
 // absorbs whatever width is left.
-constexpr int kFixedWidths[] = {150, 180, 150, 90, 60, 60};
+constexpr int kFixedWidths[] = {150, 180, 150, 90, 60, 60, 70};
+constexpr int kFixedWidthCount = sizeof(kFixedWidths) / sizeof(kFixedWidths[0]);
 }  // namespace
 
 bool StatusBar::Create(HWND parent, HINSTANCE hInstance, int controlId) {
@@ -32,7 +33,7 @@ void StatusBar::Resize(int parent_width) {
 
   int rights[kStatusPartCount];
   rights[0] = message_width;
-  for (int i = 0; i < 6; i++) rights[i + 1] = rights[i] + kFixedWidths[i];
+  for (int i = 0; i < kFixedWidthCount; i++) rights[i + 1] = rights[i] + kFixedWidths[i];
   rights[kStatusPartCount - 1] = -1;  // last pane fills to the window edge
 
   SendMessageW(m_hwnd, SB_SETPARTS, kStatusPartCount, reinterpret_cast<LPARAM>(rights));

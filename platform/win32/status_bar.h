@@ -7,8 +7,8 @@
 
 namespace ep::win32 {
 
-enum class StatusPart { Message = 0, Position, Length, Selection, Encoding, Eol, InsertMode };
-constexpr int kStatusPartCount = 7;
+enum class StatusPart { Message = 0, Position, Length, Selection, Encoding, Eol, InsertMode, JulianDate };
+constexpr int kStatusPartCount = 8;
 
 // Thin wrapper around a standard Win32 status bar (msctls_statusbar32) with
 // fixed-width trailing panes and a flexible leading message pane. Updated

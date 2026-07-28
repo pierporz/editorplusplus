@@ -5,6 +5,7 @@
 
 #include <algorithm>
 
+#include "core/julian_date.h"
 #include "core/text_stats.h"
 #include "platform/win32/resource.h"
 #include "platform/win32/syntax_highlight.h"
@@ -230,6 +231,10 @@ void MainWindow::UpdateStatusBar() {
   m_statusbar.SetText(StatusPart::Encoding, ep::EncodingName(doc.encoding));
   m_statusbar.SetText(StatusPart::Eol, ep::EolName(doc.eol));
   m_statusbar.SetText(StatusPart::InsertMode, editor.Send(SCI_GETOVERTYPE) ? "OVR" : "INS");
+
+  SYSTEMTIME today;
+  GetLocalTime(&today);
+  m_statusbar.SetText(StatusPart::JulianDate, ep::JulianDate(today.wYear, today.wMonth, today.wDay));
 }
 
 namespace {
