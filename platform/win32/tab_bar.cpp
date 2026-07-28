@@ -42,11 +42,21 @@ void TabBar::AddTab(int index, const std::string& utf8_label) {
 void TabBar::RemoveTab(int index) { TabCtrl_DeleteItem(m_hwnd, index); }
 
 void TabBar::SetLabel(int index, const std::string& utf8_label) {
+  // TCM_SETITEM only replaces the text; the control never re-measures an
+  // existing item's auto-sized width from it (that measurement only happens
+  // on TCM_INSERTITEM), so a tab never widens/shrinks to fit a new label
+  // (e.g. the dirty '*' suffix, or a rename) without this workaround: delete
+  // and reinsert the item, which forces the control to recompute its width.
+  bool was_selected = (TabCtrl_GetCurSel(m_hwnd) == index);
+  TabCtrl_DeleteItem(m_hwnd, index);
+
   std::wstring wide = Utf8ToWide(utf8_label) + kCloseButtonPadding;
   TCITEMW item{};
   item.mask = TCIF_TEXT;
   item.pszText = wide.data();
-  TabCtrl_SetItem(m_hwnd, index, &item);
+  TabCtrl_InsertItem(m_hwnd, index, &item);
+
+  if (was_selected) TabCtrl_SetCurSel(m_hwnd, index);
   InvalidateRect(m_hwnd, nullptr, FALSE);
 }
 
