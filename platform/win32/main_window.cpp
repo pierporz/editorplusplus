@@ -201,6 +201,8 @@ void MainWindow::OnCreate(HWND hwnd, HINSTANCE hInstance) {
   m_find_dialog.wrap_around = m_config.find.wrap_around;
   m_find_dialog.history = m_config.find.history;
 
+  m_julian_calendar.Create(hwnd, hInstance);
+
   RebuildRecentMenu();
   RestoreSession();
 }

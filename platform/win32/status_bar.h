@@ -24,8 +24,9 @@ class StatusBar {
 
   void SetText(StatusPart part, const std::string& utf8_text);
 
-  // Fired on a left click inside the Encoding or EOL pane, screen_pt is
-  // where a conversion popup menu should be anchored.
+  // Fired on a left click inside the Encoding, EOL, or JulianDate pane;
+  // screen_pt is where the resulting popup (conversion menu or calendar)
+  // should be anchored.
   std::function<void(StatusPart part, POINT screen_pt)> on_part_clicked;
 
   // Called from MainWindow::WndProc's WM_NOTIFY case; returns true if the

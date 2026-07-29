@@ -253,6 +253,11 @@ int ShowChoiceMenu(HWND owner, POINT screen_pt, std::initializer_list<const wcha
 }  // namespace
 
 void MainWindow::OnStatusPartClicked(StatusPart part, POINT screen_pt) {
+  if (part == StatusPart::JulianDate) {
+    m_julian_calendar.Show(screen_pt);
+    return;
+  }
+
   if (m_active < 0) return;
   Tab& tab = *m_tabs[m_active];
 

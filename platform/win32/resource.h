@@ -72,3 +72,7 @@
 #define IDC_BTN_REPLACE 1112
 #define IDC_BTN_REPLACEALL 1113
 #define IDC_FIND_STATUS 1114
+
+// Julian date calendar popup
+#define IDC_JULIAN_MONTHCAL 1200
+#define IDC_JULIAN_LABEL 1201

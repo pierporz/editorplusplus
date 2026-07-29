@@ -57,7 +57,8 @@ bool StatusBar::HandleNotify(const NMHDR& hdr) {
   auto* mouse = reinterpret_cast<const NMMOUSE*>(&hdr);
   int part = static_cast<int>(mouse->dwItemSpec);
   if ((part == static_cast<int>(StatusPart::Encoding) ||
-       part == static_cast<int>(StatusPart::Eol)) &&
+       part == static_cast<int>(StatusPart::Eol) ||
+       part == static_cast<int>(StatusPart::JulianDate)) &&
       on_part_clicked) {
     POINT pt = mouse->pt;
     ClientToScreen(m_hwnd, &pt);

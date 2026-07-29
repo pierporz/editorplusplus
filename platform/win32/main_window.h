@@ -10,6 +10,7 @@
 #include "platform/win32/document.h"
 #include "platform/win32/editor.h"
 #include "platform/win32/find_replace.h"
+#include "platform/win32/julian_calendar_popup.h"
 #include "platform/win32/session_manager.h"
 #include "platform/win32/status_bar.h"
 #include "platform/win32/tab_bar.h"
@@ -98,6 +99,7 @@ class MainWindow {
   TabBar m_tabbar;
   StatusBar m_statusbar;
   FindReplaceDialog m_find_dialog;
+  JulianCalendarPopup m_julian_calendar;
   SessionManager m_session_manager;
   AppConfig m_config;
   std::vector<std::unique_ptr<Tab>> m_tabs;
